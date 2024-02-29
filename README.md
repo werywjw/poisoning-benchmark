@@ -81,6 +81,7 @@ To test a model, run:
 
 ```test
 python test_model.py --model <model> --model_path <path_to_model_file> 
+python3 test_model.py --model 'VGG16'  --model_path 'pretrained_models/VGG16_Tinyimagenet_first.pth'
 ```    
 See the code for additional optional arguments.
 

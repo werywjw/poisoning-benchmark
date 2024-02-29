@@ -12,3 +12,7 @@ output_default
 data/
 launch/*
 /tiny.sh
+
+
+*.pth
+tiny-imagenet
