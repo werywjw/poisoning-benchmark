@@ -79,10 +79,15 @@ Pre-trained checkpoints used in this benchmark can be downloaded from [here](htt
 
 To test a model, run:
 
-```test
-python test_model.py --model <model> --model_path <path_to_model_file> 
-python3 test_model.py --model 'VGG16'  --model_path 'pretrained_models/VGG16_Tinyimagenet_first.pth'
+```
+python3 test_model.py --model 'resnet18'  --model_path 'pretrained_models/ResNet18_CIFAR10_adv.pth' 
 ```    
+
+### Record update 💻 (02.March.2024)
+```
+20240302 01:40:43  Training accuracy:  24.908
+20240302 01:40:43  Natural accuracy:  25.12
+```
 See the code for additional optional arguments.
 
 ## Crafting Poisons With Our Setups
