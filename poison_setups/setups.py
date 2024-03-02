@@ -41,12 +41,12 @@ with open("poisons.pickle", "wb") as handle:
 
 # base_indices should be a list of indices witin the CIFAR10 data of the bases, this is used for testing for clean-lable
 # i.e. that the poisons are within the l-inf ball of radius 8/255 from their respective bases
-with open("base_indices.pickle", "wb") as handle:
-    pickle.dump(base_indices, handle, protocol=pickle.HIGHEST_PROTOCOL)
+# with open("base_indices.pickle", "wb") as handle:
+#     pickle.dump(base_indices, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # For triggerless attacks use this
-with open("target.pickle", "wb") as handle:
-    pickle.dump((transforms.ToPILImage()(target_img), target_label), handle, protocol=pickle.HIGHEST_PROTOCOL)
+# with open("target.pickle", "wb") as handle:
+#     pickle.dump((transforms.ToPILImage()(target_img), target_label), handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # For triggered backdoor attacks use this where patch is a 3x5x5 tensor conataing the patch 
 # and [startx, starty] is the location of the top left pixel of patch in the pathed target 
