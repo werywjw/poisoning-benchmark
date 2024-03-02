@@ -1,0 +1,6 @@
+20240229 16:08:00 Namespace(model='VGG16', dataset='CIFAR10', output='output_default', model_path='pretrained_models/VGG16_Tinyimagenet_first.pth', normalize=True, train_augment=False)
+20240302 01:27:38 Namespace(model='VGG16', dataset='CIFAR10', output='output_default', model_path='pretrained_models/VGG16_Tinyimagenet_first.pth', normalize=True, train_augment=False)
+20240302 01:31:07 Namespace(model='resnet18', dataset='CIFAR10', output='output_default', model_path='pretrained_models/ResNet18_CIFAR10_adv.pth', normalize=True, train_augment=False)
+20240302 01:33:38 Namespace(model='vgg16', dataset='CIFAR10', output='output_default', model_path='pretrained_models/VGG16_Tinyimagenet_first.pth', normalize=True, train_augment=False)
+20240302 01:34:46 Namespace(model='vgg11', dataset='CIFAR10', output='output_default', model_path='pretrained_models/VGG16_Tinyimagenet_first.pth', normalize=True, train_augment=False)
+20240302 01:37:26 Namespace(model='vgg11', dataset='CIFAR10', output='output_default', model_path='pretrained_models/VGG16_Tinyimagenet_first.pth', normalize=True, train_augment=False)

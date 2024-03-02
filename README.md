@@ -83,8 +83,12 @@ To test a model, run:
 python3 test_model.py --model 'resnet18'  --model_path 'pretrained_models/ResNet18_CIFAR10_adv.pth' 
 ```    
 
-### Record update 💻 (02.March.2024)
+### 💻 Record update (02.March.2024)
 ```
+wery@Werys-MBP poisoning-benchmark % python3 test_model.py --model 'resnet18'  --model_path 'pretrained_models/ResNet18_CIFAR10_adv.pth'    
+20240302 01:31:07 test_model.py main() running.
+Files already downloaded and verified
+Files already downloaded and verified
 20240302 01:40:43  Training accuracy:  24.908
 20240302 01:40:43  Natural accuracy:  25.12
 ```
@@ -96,7 +100,7 @@ See [How To](how_to.md) for full details and sample code.
 ## Evaluating A Single Batch of Poison Examples
 We have left one sample folder of poisons in poison_examples.
 ```eval
-python poison_test.py --model <model> --model_path <model_path> --poisons_path <path_to_poisons_dir>
+python3 poison_test.py --model 'resnet18' --model_path 'pretrained_models/ResNet18_CIFAR10_adv.pth' --poisons_path <path_to_poisons_dir>
 ```
 This allows users to test their poisons in a variety of settings, not only the benchmark setups. See the file [poison_test.py](poison_test.py) for a comprehensive list of arguments.
 

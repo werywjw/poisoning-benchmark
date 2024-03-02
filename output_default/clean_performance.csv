@@ -1,0 +1,2 @@
+model path,model,normalize,augment,training_acc,natural_acc
+pretrained_models/ResNet18_CIFAR10_adv.pth,resnet18,True,False,24.908,25.12

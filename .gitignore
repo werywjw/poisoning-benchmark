@@ -8,7 +8,7 @@ junk.sh
 __pycache__/
 *.py[cod]
 models/__pycache__
-output_default
+# output_default
 data/
 launch/*
 /tiny.sh
