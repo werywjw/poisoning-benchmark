@@ -1,5 +1,7 @@
 import pickle
 import torch
+from PIL import Image
+from torchvision.transforms.functional import to_pil_image
 from torchvision import datasets, transforms
 
 with open("poison_setups/cifar10_transfer_learning.pickle", "rb") as handle:
@@ -31,6 +33,20 @@ base_labels = torch.LongTensor([trainset[i][1] for i in base_indices])
 # craft poisons here with the above inputs
 ###
 
+def craft_poisoned_example(image_tensor, method='triggerless', patch=None, startx=None, starty=None):
+    modified_img = image_tensor.clone() 
+    if method == 'triggered':
+        if patch is not None and startx is not None and starty is not None:
+            modified_img[:, startx:startx+patch.size(1), starty:starty+patch.size(2)] = patch
+    return modified_img
+
+poison_tuples = []
+for i in base_indices:
+    base_img_tensor, base_label = trainset[i] 
+    poisoned_img_tensor = craft_poisoned_example(base_img_tensor)  
+    poisoned_img_pil = to_pil_image(poisoned_img_tensor)
+    poison_tuples.append((poisoned_img_pil, poisoned_label))
+
 # save poisons, labels, and target
 
 # poison_tuples should be a list of tuples with two entries each (img, label), example:
@@ -41,15 +57,24 @@ with open("poisons.pickle", "wb") as handle:
 
 # base_indices should be a list of indices witin the CIFAR10 data of the bases, this is used for testing for clean-lable
 # i.e. that the poisons are within the l-inf ball of radius 8/255 from their respective bases
-# with open("base_indices.pickle", "wb") as handle:
-#     pickle.dump(base_indices, handle, protocol=pickle.HIGHEST_PROTOCOL)
+with open("base_indices.pickle", "wb") as handle:
+    pickle.dump(base_indices, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # For triggerless attacks use this
-# with open("target.pickle", "wb") as handle:
-#     pickle.dump((transforms.ToPILImage()(target_img), target_label), handle, protocol=pickle.HIGHEST_PROTOCOL)
+with open("target.pickle", "wb") as handle:
+    pickle.dump((transforms.ToPILImage()(target_img), target_label), handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 # For triggered backdoor attacks use this where patch is a 3x5x5 tensor conataing the patch 
 # and [startx, starty] is the location of the top left pixel of patch in the pathed target 
-with open("target.pickle", "wb") as handle:
+
+transform = transforms.Compose([
+    transforms.ToTensor(),
+])
+image_path = 'poison_crafting/triggers/clbd.png' 
+image = Image.open(image_path)
+patch = transform(image)
+
+startx, starty = 10, 10 # example???
+with open("target.pickle", "wb") as handle: # target2.pickle
     pickle.dump((transforms.ToPILImage()(target_img), target_label, patch, [startx, starty]), handle, 
                 protocol=pickle.HIGHEST_PROTOCOL)

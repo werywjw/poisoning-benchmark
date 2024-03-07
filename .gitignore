@@ -14,5 +14,6 @@ launch/*
 /tiny.sh
 
 
+*.pdf
 *.pth
 tiny-imagenet
