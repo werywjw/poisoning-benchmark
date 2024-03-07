@@ -99,8 +99,10 @@ See [How To](how_to.md) for full details and sample code.
 
 ## Evaluating A Single Batch of Poison Examples
 We have left one sample folder of poisons in poison_examples.
+
+### 💻 Record update (07.March.2024)
 ```eval
-python3 poison_test.py --model 'resnet18' --model_path 'pretrained_models/ResNet18_CIFAR10_adv.pth' --poisons_path <path_to_poisons_dir>
+python3 poison_test.py --model 'resnet18' --model_path 'pretrained_models/ResNet18_CIFAR10_adv.pth' --poisons_path 'poison_setups/'
 ```
 This allows users to test their poisons in a variety of settings, not only the benchmark setups. See the file [poison_test.py](poison_test.py) for a comprehensive list of arguments.
 
@@ -110,13 +112,38 @@ To compute benchmark scores, craft 100 batches of poisons using the setup pickle
 *Important Note:* In order to be on the leaderboard, new submissions must host their poisoned datasets online for public access, so results can be corroborated without producing new poisons. Consider a Dropbox or GoogleDrive folder with all 100 batches of poisons.
 
 For one trial of transfer learning poisons:
+
+### 💻 Record update (07.March.2024)
 ```eval
-python benchmark_test.py --poisons_path <path_to_poison_directory>  --dataset <dataset>
+python3 benchmark_test.py --poisons_path 'poison_setups/'  --dataset 'cifar10'
+```
+
+```
+wery@Werys-MBP poisoning-benchmark % python3 benchmark_test.py --poisons_path 'poison_setups/'  --dataset 'cifar10' 
+20240307 18:19:39 benchmark_test.py running.
+Testing poisons from poison_setups/, in the transfer learning setting...
+
+Transfer learning test:
+Namespace(from_scratch=False, poisons_path='poison_setups/', dataset='cifar10', output='output_default', pretrain_dataset='cifar100', ffe=True, num_poisons=25, trainset_size=2500, lr=0.01, lr_schedule=[30], epochs=40, image_size=32, patch_size=5, train_augment=True, normalize=True, weight_decay=0.0002, batch_size=128, lr_factor=0.1, val_period=20, optimizer='SGD')
+20240307 18:19:39 poison_test.py main() running.
+25  poisons in this trial.
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+==> Training network...
+20240307 18:29:19  Epoch:  19 , Loss:  0.7128323137760162 , Training acc:  74.92 , Natural accuracy:  68.97 , poison success:  False
+Adjusting learning rate  0.01 -> 0.001
+20240307 18:38:51  Epoch:  39 , Loss:  0.6499185979366302 , Training acc:  76.92 , Natural accuracy:  69.89 , poison success:  False
+20240307 18:40:26  Training ended at epoch  39 , Natural accuracy:  69.89
+20240307 18:40:26  poison success:  False  poisoned_label:  7  prediction:  4
+20240307 18:40:26 poison_test.py main() running.
+25  poisons in this trial.
 ```
 
 For one trial of from-scratch training poisons:
+### 💻 Record update (07.March.2024)
 ```eval
-python benchmark_test.py --poisons_path <path_to_poison_directory> --dataset <dataset> --from_scratch
+python3 benchmark_test.py --poisons_path 'poison_setups/' --dataset 'cifar10' --from_scratch
 ```
 
 To benchmark 100 batches of poisons, run
